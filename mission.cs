@@ -11,11 +11,11 @@ namespace processManagement
     public class mission //: INotifyPropertyChanged
     {
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-        public void onPropertyChanged(string tulajdonsagnev)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(tulajdonsagnev));
-        }
+        //public event PropertyChangedEventHandler? PropertyChanged;
+        //public void onPropertyChanged(string tulajdonsagnev)
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(tulajdonsagnev));
+        //}
 
 
         private string name;
@@ -39,7 +39,7 @@ namespace processManagement
         public int StartingMonth
         {
             get { return startingMonth; }
-            set { startingMonth = value; onPropertyChanged("StartingMonth"); }
+            set { startingMonth = value; /*onPropertyChanged("StartingMonth");*/ }
         }
 
         private int startingDay;

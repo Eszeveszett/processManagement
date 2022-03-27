@@ -69,7 +69,9 @@
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox>
-                    <Label Content="Validation Rule"/>
+                    <Label x:Name="LBL_StartingMonthValidationMessage" Content="Validation Rule"/>
+                    <Label Content="{Binding ElementName=TBO_StartingMonth,Path=(Validation.Errors)[0].ErrorContent}"/>
+                    <!--A felülírt ValidationRule ValidationResult értékét jeleníti meg-->
                 </WrapPanel>
                 <WrapPanel>
                     <Label Content="Starting Day"

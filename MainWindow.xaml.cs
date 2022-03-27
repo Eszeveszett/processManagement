@@ -39,6 +39,7 @@ namespace processManagement
             StartingDay = 1, Duration = 30, Description = "Negyedik feladat leírása"});
 
             LBO_Tasks.ItemsSource = feladat;
+
         }
 
         private void StringToIntValidation(object sender, TextCompositionEventArgs e)
@@ -55,6 +56,10 @@ namespace processManagement
         private void BTN_Validate_Click(object sender, RoutedEventArgs e)
         {
             SP_ValidatorPanel.DataContext = new mission();
+            if (string.IsNullOrEmpty(TBO_StartingMonth.Text))
+            {
+                LBL_StartingMonthValidationMessage.Content = "Error";
+            }
         }
     }
 }
