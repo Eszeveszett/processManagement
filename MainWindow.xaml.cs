@@ -40,6 +40,7 @@ namespace processManagement
 
             LBO_Tasks.ItemsSource = feladat;
 
+            SP_TaskPanel.Visibility = Visibility.Hidden;
         }
 
         private void StringToIntValidation(object sender, TextCompositionEventArgs e)
@@ -64,9 +65,98 @@ namespace processManagement
             TBO_StartingMonth.Text = DPI_StartingDate.SelectedDate.Value.Month.ToString();
         }
 
-        private void BTN_NewTask_Click(object sender, RoutedEventArgs e)
+        private async void BTN_NewTask_Click(object sender, RoutedEventArgs e)
         {
+            LBO_Tasks.SelectedItem = null;
+            SP_TaskPanel.Visibility = Visibility.Visible;
+            #region kommenteltcucc
+            //if (string.IsNullOrEmpty(TBO_TaskName.Text))
+            //{
+            //    TBO_TaskName.Text = "Kitöltése kötelező";
+            //    await Task.Delay(1000);
+            //    TBO_TaskName.Text = null;
+            //}
+            //else
+            //{
+            //    if (string.IsNullOrEmpty(TBO_TaskLocation.Text))
+            //    {
+            //        TBO_TaskLocation.Text = "Kitöltése kötelező";
+            //        await Task.Delay(1000);
+            //        TBO_TaskLocation.Text = null;
+            //    }
+            //    else
+            //    {
+            //        if (string.IsNullOrEmpty(TBO_StartingMonth.Text) || string.IsNullOrEmpty(TBO_StartingDay.Text))
+            //        {
+            //            SP_ValidatorPanel.DataContext = new mission();
+            //            if (TBO_StartingMonth.Text.Contains(""))
+            //            {
+            //                TBO_StartingMonth.Text = "";
+            //                if (TBO_StartingDay.Text.Contains(""))
+            //                {
+            //                    TBO_StartingDay.Text = "";
+            //                }
+            //            }
+            //        }
+            //        else
+            //        {
+            //            if (string.IsNullOrEmpty(TBO_Duration.Text))
+            //            {
+            //                TBO_Duration.Text = "Kitöltése kötelező";
+            //                await Task.Delay(1000);
+            //                TBO_Duration.Text = null;
+            //            }
+            //            else
+            //            {
+            //                if (string.IsNullOrEmpty(TBO_Description.Text))
+            //                {
+            //                    TBO_Description.Text = "Kitöltése kötelező";
+            //                    await Task.Delay(1000);
+            //                    TBO_Description.Text = null;
+            //                }
+            //                else
+            //                {
+            //                    feladat.Add(new mission()
+            //                    {
+            //                        Name = TBO_TaskName.Text,
+            //                        Location = TBO_TaskLocation.Text,
+            //                        StartingMonth = Convert.ToInt32(TBO_StartingMonth.Text),
+            //                        StartingDay = Convert.ToInt32(TBO_StartingDay.Text),
+            //                        Duration = Convert.ToInt32(TBO_Description.Text),
+            //                        EndingMonth = 0,
+            //                        EndingDay = 0,
+            //                        Description = TBO_Description.Text,
+            //                    });
+            //                    LBO_Tasks.ItemsSource = feladat;
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
 
+            //if (string.IsNullOrEmpty(TBO_StartingMonth.Text) || string.IsNullOrEmpty(TBO_StartingDay.Text))
+            //{
+            //    SP_ValidatorPanel.DataContext = new mission();
+            //    if (TBO_StartingMonth.Text.Contains(""))
+            //    {
+            //        TBO_StartingMonth.Text = "";
+            //        if (TBO_StartingDay.Text.Contains(""))
+            //        {
+            //            TBO_StartingDay.Text = "";
+            //        }
+            //    }
+            //}
+
+            //SP_ValidatorPanel.DataContext = new mission();
+            //if (TBO_StartingMonth.Text.Contains("0"))
+            //{
+            //    TBO_StartingMonth.Text = "";
+            //    if (TBO_StartingDay.Text.Contains(""))
+            //    {
+            //        TBO_StartingDay.Text = "";
+            //    }
+            //}
+            #endregion
         }
 
         private void BTN_EditTask_Click(object sender, RoutedEventArgs e)
@@ -77,6 +167,82 @@ namespace processManagement
         private void BTN_DeleteTask_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private async void BTN_Save_Click(object sender, RoutedEventArgs e)
+        {
+            if (LBO_Tasks.SelectedItem != null)
+            {
+
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(TBO_TaskName.Text))
+                {
+                    TBO_TaskName.Text = "Kitöltése kötelező";
+                    await Task.Delay(1000);
+                    TBO_TaskName.Text = null;
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(TBO_TaskLocation.Text))
+                    {
+                        TBO_TaskLocation.Text = "Kitöltése kötelező";
+                        await Task.Delay(1000);
+                        TBO_TaskLocation.Text = null;
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(TBO_StartingMonth.Text) || string.IsNullOrEmpty(TBO_StartingDay.Text))
+                        {
+                            SP_ValidatorPanel.DataContext = new mission();
+                            if (TBO_StartingMonth.Text.Contains(""))
+                            {
+                                TBO_StartingMonth.Text = "";
+                                if (TBO_StartingDay.Text.Contains(""))
+                                {
+                                    TBO_StartingDay.Text = "";
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (string.IsNullOrEmpty(TBO_Duration.Text))
+                            {
+                                TBO_Duration.Text = "Kitöltése kötelező";
+                                await Task.Delay(1000);
+                                TBO_Duration.Text = null;
+                            }
+                            else
+                            {
+                                if (string.IsNullOrEmpty(TBO_Description.Text))
+                                {
+                                    TBO_Description.Text = "Kitöltése kötelező";
+                                    await Task.Delay(1000);
+                                    TBO_Description.Text = null;
+                                }
+                                else
+                                {
+                                    feladat.Add(new mission()
+                                    {
+                                        Name = TBO_TaskName.Text,
+                                        Location = TBO_TaskLocation.Text,
+                                        StartingMonth = Convert.ToInt32(TBO_StartingMonth.Text),
+                                        StartingDay = Convert.ToInt32(TBO_StartingDay.Text),
+                                        Duration = Convert.ToInt32(TBO_Description.Text),
+                                        EndingMonth = 0,
+                                        EndingDay = 0,
+                                        Description = TBO_Description.Text,
+                                    });
+                                    LBO_Tasks.ItemsSource = feladat;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            
         }
     }
 }

@@ -64,43 +64,57 @@
                     <TextBox x:Name="TBO_TaskLocation"
                     Width="130" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                 </WrapPanel>
-                <StackPanel>
-                    <WrapPanel>
-                        <Label Content="Starting Month"
-                        Width="100"/>
-                        <TextBox x:Name="TBO_StartingMonth"
-                            Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-                            <Binding Path="StartingMonth" UpdateSourceTrigger="PropertyChanged">
-                                <Binding.ValidationRules>
-                                    <DataErrorValidationRule/>
-                                    <local:StringToIntValidationRule ValidationStep="RawProposedValue"/>
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </TextBox>
-                        <DatePicker x:Name="DPI_StartingDate" SelectedDateChanged="DPI_StartingDate_SelectedDateChanged"
-                            Width="30"/>
-                        <Label Content="{Binding ElementName=TBO_StartingMonth,
-                            Path=(Validation.Errors)[0].ErrorContent}"/>
-                        <!--A felülírt ValidationRule ValidationResult értékét jeleníti meg.
-                            De hol a nulla? Miért kerül oda nulla?-->
-                    </WrapPanel>
-                    <WrapPanel>
-                        <Label Content="Starting Day"
+                <WrapPanel>
+                    <StackPanel>
+                        <WrapPanel Width="200" Height="25" HorizontalAlignment="Left">
+                            <Label Content="Starting Month"
                             Width="100"/>
-                        <TextBox x:Name="TBO_StartingDay"
-                            Width="100" HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center">
-                            <Binding Path="Duration" UpdateSourceTrigger="PropertyChanged">
-                                <Binding.ValidationRules>
-                                    <DataErrorValidationRule/>
-                                    <local:StringToIntValidationRule ValidationStep="RawProposedValue"/>
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </TextBox>
-                        <Label Content="{Binding ElementName=TBO_StartingDay,
-                            Path=(Validation.Errors)[0].ErrorContent}"/>
+                            <TextBox x:Name="TBO_StartingMonth"
+                                Width="100" HorizontalContentAlignment="Center" 
+                                VerticalContentAlignment="Center">
+                                <Binding Path="StartingMonth" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule/>
+                                        <local:StringToIntValidationRule ValidationStep="RawProposedValue"/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox>
+                            
+                            
+                        </WrapPanel>
+
+                        <WrapPanel Width="200" Height="25" HorizontalAlignment="Left">
+                            <Label Content="Starting Day"
+                                Width="100"/>
+                            <TextBox x:Name="TBO_StartingDay"
+                                Width="100" HorizontalContentAlignment="Center" 
+                                VerticalContentAlignment="Center">
+                                <Binding Path="Duration" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule/>
+                                        <local:StringToIntValidationRule ValidationStep="RawProposedValue"/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox>
+                            
+                        </WrapPanel>
+                    </StackPanel>
+                    <WrapPanel>
+                        <DatePicker x:Name="DPI_StartingDate" SelectedDateChanged="DPI_StartingDate_SelectedDateChanged"
+                            Width="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <StackPanel>
+                            <Label Content="{Binding ElementName=TBO_StartingMonth,
+                                Path=(Validation.Errors)[0].ErrorContent}"
+                                   MinWidth="50" MinHeight="25" Foreground="Red"/>
+                            <Label Content="{Binding ElementName=TBO_StartingDay,
+                                Path=(Validation.Errors)[0].ErrorContent}"
+                                   MinWidth="50" MinHeight="25" Foreground="Red"/>
+                            <!--A felülírt ValidationRule ValidationResult értékét jeleníti meg.
+                                De miért fut hibára? És ez miért nem fagyasztja ki az alkalmazást?-->
+                        </StackPanel>
                     </WrapPanel>
-                </StackPanel>
+                                    
+                </WrapPanel>
                 
                 <WrapPanel>
                     <Label Content="Duration"
@@ -116,7 +130,19 @@
                     <TextBox x:Name="TBO_Description"
                     Width="280" Height="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                 </WrapPanel>
-                <Button x:Name="BTN_Validate" Click="BTN_Validate_Click" Content="Validate"/>
+                <Separator Margin="5"/>
+                <StackPanel>
+                    <Button x:Name="BTN_Validate" Click="BTN_Validate_Click" 
+                            Content="Validate" Margin="5"
+                            HorizontalAlignment="Center"/>
+                    <WrapPanel HorizontalAlignment="Center">
+                        <Button x:Name="BTN_Save" Click="BTN_Save_Click"
+                                Content="Save" Margin="5"/>
+                        <Button x:Name="BTN_Cancel" 
+                                Content="Cancel" Margin="5"/>
+                    </WrapPanel>
+                </StackPanel>
+                
                 <!--<StackPanel>
                     <DatePicker x:Name="DPI_StartDate" SelectedDateChanged="DPI_StartDate_SelectedDateChanged"/>
                     <TextBox x:Name="TBO_StartM" Text="{Binding ElementName=DPI_StartDate, 

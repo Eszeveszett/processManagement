@@ -8,14 +8,14 @@ using System.ComponentModel;    //  Az INotifyPropertyChanged névtere
 
 namespace processManagement
 {
-    public class mission //: INotifyPropertyChanged
+    public class mission : INotifyPropertyChanged
     {
 
-        //public event PropertyChangedEventHandler? PropertyChanged;
-        //public void onPropertyChanged(string tulajdonsagnev)
-        //{
-        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(tulajdonsagnev));
-        //}
+        public event PropertyChangedEventHandler? PropertyChanged;
+        public void onPropertyChanged(string tulajdonsagnev)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(tulajdonsagnev));
+        }
 
 
         private string name;
@@ -39,7 +39,7 @@ namespace processManagement
         public int StartingMonth
         {
             get { return startingMonth; }
-            set { startingMonth = value; /*onPropertyChanged("StartingMonth");*/ }
+            set { startingMonth = value; onPropertyChanged("StartingMonth"); }
         }
 
         private int startingDay;
@@ -47,7 +47,7 @@ namespace processManagement
         public int StartingDay
         {
             get { return startingDay; }
-            set { startingDay = value; }
+            set { startingDay = value; onPropertyChanged("StartingDay"); }
         }
 
         private int duration;
@@ -82,6 +82,5 @@ namespace processManagement
             get { return description; }
             set { description = value; }
         }
-
     }
 }
