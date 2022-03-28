@@ -30,13 +30,13 @@ namespace processManagement
             InitializeComponent();
 
             feladat.Add(new mission() {Name = "Első feladat", Location = "Első helyszín", StartingMonth = 1,
-            StartingDay = 1, Duration = 25, Description = "Első feladat leírása"});
+            StartingDay = 1, Duration = 25, EndingMonth = 1, EndingDay = 1, Description = "Első feladat leírása"});
             feladat.Add(new mission() {Name = "Második feladat", Location = "Második helyszín", StartingMonth = 2,
-            StartingDay = 1, Duration = 10, Description = "Második feladat leírása"});
+            StartingDay = 1, Duration = 10, EndingMonth = 1, EndingDay = 1, Description = "Második feladat leírása"});
             feladat.Add(new mission() {Name = "Harmadik feladat", Location = "Első helyszín", StartingMonth = 2,
-            StartingDay = 10, Duration = 20, Description = "Harmadik feladat leírása"});
+            StartingDay = 10, Duration = 20, EndingMonth = 1, EndingDay = 1,Description = "Harmadik feladat leírása"});
             feladat.Add(new mission() {Name = "Negyedik feladat", Location = "Első helyszín", StartingMonth = 3,
-            StartingDay = 1, Duration = 30, Description = "Negyedik feladat leírása"});
+            StartingDay = 20, Duration = 30, EndingMonth = 1, EndingDay = 1,Description = "Negyedik feladat leírása"});
 
             LBO_Tasks.ItemsSource = feladat;
 
@@ -53,13 +53,30 @@ namespace processManagement
             //  hogy (Belül)csak az  adott karakterek vihetőek be, vagy (Kívül) csak az adott karakterek NEM vihetőek be
         }
 
-        private void BTN_Validate_Click(object sender, RoutedEventArgs e)
+        private async void BTN_Validate_Click(object sender, RoutedEventArgs e)
         {
             SP_ValidatorPanel.DataContext = new mission();
-            if (string.IsNullOrEmpty(TBO_StartingMonth.Text))
-            {
-                LBL_StartingMonthValidationMessage.Content = "Error";
-            }
+        }
+
+        private void DPI_StartingDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TBO_StartingDay.Text = DPI_StartingDate.SelectedDate.Value.Day.ToString();
+            TBO_StartingMonth.Text = DPI_StartingDate.SelectedDate.Value.Month.ToString();
+        }
+
+        private void BTN_NewTask_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BTN_EditTask_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BTN_DeleteTask_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

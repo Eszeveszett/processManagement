@@ -17,7 +17,7 @@ namespace processManagement
             if (int.TryParse(value.ToString(), out i))
             {
                 return new ValidationResult(true, null);
-            } 
+            }
 
             return new ValidationResult(false, "Csak egész szám lehet");
         }

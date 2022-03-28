@@ -58,6 +58,23 @@ namespace processManagement
             set { duration = value; }
         }
 
+        private int endingMonth;
+
+        public int EndingMonth
+        {
+            get { return endingMonth; }
+            set { endingMonth = value; }
+        }
+
+        private int endingDay;
+
+        public int EndingDay
+        {
+            get { return endingDay; }
+            set { endingDay = value; }
+        }
+
+
         private string description;
 
         public string Description
